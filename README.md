@@ -1,7 +1,7 @@
 # sysfs
 
 Go library for more reliable interactions with sysfs drivers. The sysfs library
-assumes that your interactions with a sysfs driver is simple all-or-nothing
+assumes that your interactions with a sysfs driver are simple all-or-nothing
 reading or writing data to files under `/sys/class/...`. To make the
 interactions simpler and easier to test, write your classes to receive and use a
 `sysfs.DeviceFile` interface rather than directly writing to the device files.
