@@ -131,11 +131,11 @@ var _ = Describe("Core", func() {
 			It("should respond to a read with no response with an error", func() {
 				recorder := FileRecorder{}
 				text, err := recorder.Read("foo")
-				Ω(err).Should(Equal(os.ErrNotExist))
+				Ω(err).ShouldNot(BeNil())
 				Ω(text).Should(BeEmpty())
 				recorder.Respond("jane", &StaticResponder{Text: "doe"})
 				text, err = recorder.Read("foo")
-				Ω(err).Should(Equal(os.ErrNotExist))
+				Ω(err).ShouldNot(BeNil())
 				Ω(text).Should(BeEmpty())
 				text, err = recorder.Read("jane")
 				Ω(err).Should(BeNil())
@@ -149,13 +149,13 @@ var _ = Describe("Core", func() {
 				Ω(records).Should(HaveLen(4))
 				record := records[0]
 				Ω(record.Stamp).ShouldNot(BeNil())
-				Ω(record.Err).Should(Equal(os.ErrNotExist))
+				Ω(record.Err).ShouldNot(BeNil())
 				Ω(record.Path).Should(Equal("/foo"))
 				Ω(record.Text).Should(BeEmpty())
 				Ω(record.Write).Should(BeFalse())
 				record = records[1]
 				Ω(record.Stamp).ShouldNot(BeNil())
-				Ω(record.Err).Should(Equal(os.ErrNotExist))
+				Ω(record.Err).ShouldNot(BeNil())
 				Ω(record.Path).Should(Equal("/foo"))
 				Ω(record.Text).Should(BeEmpty())
 				Ω(record.Write).Should(BeFalse())
