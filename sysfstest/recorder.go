@@ -1,6 +1,7 @@
 package sysfstest
 
 import (
+	"errors"
 	"os"
 	pth "path"
 	"strings"
@@ -42,7 +43,7 @@ func (r *FileRecorder) Read(path string) (string, error) {
 	if ok {
 		text, err = responder.Read()
 	} else {
-		err = os.ErrNotExist
+		err = errors.New(path + " file does not exist")
 	}
 	r.records = append(r.records, NewReadRecord(path, text, err))
 	return text, err
