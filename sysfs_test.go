@@ -23,7 +23,7 @@ var _ = Describe("Core", func() {
 		It("should read/write to a real file", func() {
 			f := HardwareFile{}
 			u4 := uuid.NewV4()
-			name := uuid.Formatter(u4, uuid.Clean)
+			name := uuid.Formatter(u4, uuid.FormatCanonical)
 			tmp := path.Join(os.TempDir(), name+".gotest.tmp")
 
 			By("using tmp " + tmp)
